@@ -47,7 +47,7 @@ currPag p = case p of
     Pagina0 -> blank
     Pagina1 -> txt
     Pagina2 -> somaEvt   
-    Pagina3 -> pagClick
+    Pagina3 -> aboutUs
     Pagina4 -> bttnEvt
 
     

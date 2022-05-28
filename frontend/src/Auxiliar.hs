@@ -32,11 +32,14 @@ countClick = do
     (ev, _) <- el' "button" (text "+")
     return ((const 1) <$> domEvent Click ev)
     
-pagClick :: (MonadHold t m, PostBuild t m, DomBuilder t m, MonadFix m) => m ()
-pagClick = do
-    evt <- countClick
-    st <- accumDyn (+) 0 evt
-    el "div" (dynText (fmap (T.pack . show) st))
+aboutUs :: (MonadHold t m, PostBuild t m, DomBuilder t m, MonadFix m) => m ()
+aboutUs = do
+    el "h2" $ text "Sobre nós"
+    el "p" $ text "A Portcripto nasceu da necessidade de atender de forma clara os clientes interessados em comprar criptomoedas, mas que não possuíam um entendimento sobre o assunto. As moedas digitais mesmo em crescimento global impressionante ainda estão sendo pouco comercializadas pela maioria das pessoas, por se sentirem inseguras e sem as informações necessárias para reverter esse quadro."
+    el "p" $ text "Nosso intuito além de propagar o entendimento sobre criptomoedas é mostrar o quanto esse mercado é promissor e seja percebido como mais uma fonte de investimento, apesar de todo risco que uma operação financeira apresenta, pode ser acessível a qualquer pessoa."
+    el "p" $ text "Pelo nosso sistema, as pessoas terão informações por exemplo de onde surgiram as criptomoedas, como elas podem comprar os valores e assim fazer suas próprias escolhas de compra e o funcionamento de uma carteira de moedas digitais, principalmente como esse processo pode se tornar seguro para quem pretende investir, tornando a sua experiência em negociações de modo simples e seguro."
+    el "p" $ text "Os sócios Daniela, Jonatas e Rosângela formados na Faculdade de Tecnologia Rubens Lara investiram na melhor tecnologia pensando em oferecer a maior segurança e melhor experiência, levando confiança a você."
+    el "p" $ text "Maiores informações, entre em contato com nossa Central de Ajuda."
 
 somaClick :: (DomBuilder t m, PostBuild t m, MonadHold t m) => m (Event t Double)
 somaClick = do
