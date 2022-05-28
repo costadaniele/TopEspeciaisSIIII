@@ -22,10 +22,6 @@ Comando `ghci` para entrar no Haskell
 
 - Obelisk
 
-`mkdir projeto`
-`cd projeto`
-`ob init`
-
 `ob run -v`
 
 Referências:
