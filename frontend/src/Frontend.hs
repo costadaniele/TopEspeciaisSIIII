@@ -29,7 +29,7 @@ frontend = Frontend
       el "title" $ text "Portfólio Criptomoeda"
       elAttr "link" ("href" =: $(static "main.css") <> "type" =: "text/css" <> "rel" =: "stylesheet") blank
   , _frontend_body = do
-      elAttr "img" ("src" =: $(static "image3.jpg")) blank
+      elAttr "img" ("src" =: $(static "image3.jpg") <> "id" =: "logo") blank
       el "h1" $ text "PortCripto"
       mainPag
       return ()

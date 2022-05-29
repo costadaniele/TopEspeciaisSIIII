@@ -45,10 +45,10 @@ menuLi = do
 currPag :: (DomBuilder t m, MonadHold t m, PostBuild t m, MonadFix m) => Pagina -> m ()
 currPag p = case p of
     Pagina0 -> blank
-    Pagina1 -> txt
-    Pagina2 -> somaEvt   
+    Pagina1 -> home
+    Pagina2 -> wallet   
     Pagina3 -> aboutUs
-    Pagina4 -> bttnEvt
+    Pagina4 -> contact
 
     
 mainPag :: (DomBuilder t m, MonadHold t m, PostBuild t m, MonadFix m) => m ()
