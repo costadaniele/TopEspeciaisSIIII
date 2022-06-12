@@ -2,6 +2,7 @@ module Backend where
 
 import Common.Route
 import Obelisk.Backend
+import Database.PostgreSQL.Simple
 
 backend :: Backend BackendRoute FrontendRoute
 backend = Backend
