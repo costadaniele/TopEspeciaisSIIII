@@ -8,15 +8,13 @@
 	box-sizing: border-box;
 }
 
-html {
-	height: 100%;
-}
-
 body {
 	display: flex;
 	flex-direction: column;
 	background-color: #fff;
 	color: #555;
+	margin: 30px;
+	margin-bottom: 30px;
 }
 
 h1 {
@@ -31,11 +29,17 @@ h2 {
   padding: 15px;
 }
 
+h4 {
+	text-align: center;
+  color:  #555; 
+  padding: 15px;
+}
+
 p {
 	margin-left: auto;
   margin-right: auto;
 	color: #555;
-	width: 30em;
+	width: 50em;
 	padding: 12px;
 	font-family: 'Montserrat', sans-serif;
 	text-align: justify;
@@ -109,3 +113,6 @@ ul li a {
 	padding: 15px;
 }
 
+#deOlho {
+	width: 60%;
+}

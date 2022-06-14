@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE TemplateHaskell, ScopedTypeVariables #-}
 
 module Auxiliar where
 
@@ -22,6 +22,24 @@ import Control.Monad.Fix
 import Text.Read
 import Data.Maybe
 
+getPath :: T.Text
+getPath = renderBackendRoute checFullREnc $ BackendRoute_Contato :/ ()
+
+nomeRequest :: T.Text -> XhrRequest T.Text
+nomeRequest s = postJson getPath (Contato s)
+
+req :: ( DomBuilder t m, Prerender t m) => m ()
+req = do
+    el "h4" $ text "Deixe seu email e entraremos em contato" 
+    el "h2" $ text "Email"
+    inputEl <- inputElement def
+    (submitBtn,_) <- el' "button" (text "Enviar")
+    let click = domEvent Click submitBtn
+    let nm = tag (current $ _inputElement_value inputEl) click
+    _ :: Dynamic t (Event t (Maybe T.Text)) <- prerender
+        (pure never)
+        (fmap decodeXhrResponse <$> performRequestAsync (nomeRequest <$> nm))
+    return ()
 
 revText :: T.Text -> T.Text
 -- revText t = T.pack (reverse (T.unpack t))
@@ -51,7 +69,7 @@ aboutUs = do
     el "p" $ text "A Portcripto nasceu da necessidade de atender de forma clara os clientes interessados em comprar criptomoedas, mas que não possuíam um entendimento sobre o assunto. As moedas digitais mesmo em crescimento global impressionante ainda estão sendo pouco comercializadas pela maioria das pessoas, por se sentirem inseguras e sem as informações necessárias para reverter esse quadro."
     el "p" $ text "Nosso intuito além de propagar o entendimento sobre criptomoedas é mostrar o quanto esse mercado é promissor e seja percebido como mais uma fonte de investimento, apesar de todo risco que uma operação financeira apresenta, pode ser acessível a qualquer pessoa."
     el "p" $ text "Pelo nosso sistema, as pessoas terão informações por exemplo de onde surgiram as criptomoedas, como elas podem comprar os valores e assim fazer suas próprias escolhas de compra e o funcionamento de uma carteira de moedas digitais, principalmente como esse processo pode se tornar seguro para quem pretende investir, tornando a sua experiência em negociações de modo simples e seguro."
-    el "p" $ text "Os sócios Daniela, Jonatas e Rosângela formados na Faculdade de Tecnologia Rubens Lara investiram na melhor tecnologia pensando em oferecer a maior segurança e melhor experiência, levando confiança a você."
+    el "p" $ text "Os sócios Daniele, Jonatas e Rosângela formados na Faculdade de Tecnologia Rubens Lara investiram na melhor tecnologia pensando em oferecer a maior segurança e melhor experiência, levando confiança a você."
     el "p" $ text "Maiores informações, entre em contato com nossa Central de Ajuda."
 
 contact :: (DomBuilder t m, PostBuild t m, MonadHold t m) => m ()

@@ -31,6 +31,6 @@ frontend = Frontend
   , _frontend_body = do
       elAttr "img" ("src" =: $(static "image3.jpg") <> "id" =: "logo") blank
       el "h1" $ text "PortCripto"
-      mainPag
+      mainPag 
       return ()
   }

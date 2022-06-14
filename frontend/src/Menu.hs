@@ -42,16 +42,16 @@ menuLi = do
         return (leftmost [p1,p2,p3,p4])
     holdDyn Pagina0 evs
     
-currPag :: (DomBuilder t m, MonadHold t m, PostBuild t m, MonadFix m) => Pagina -> m ()
+currPag :: (DomBuilder t m, MonadHold t m, PostBuild t m, MonadFix m, Prerender t m) => Pagina -> m ()
 currPag p = case p of
     Pagina0 -> blank
     Pagina1 -> home
     Pagina2 -> wallet   
     Pagina3 -> aboutUs
-    Pagina4 -> contact
+    Pagina4 -> req
 
     
-mainPag :: (DomBuilder t m, MonadHold t m, PostBuild t m, MonadFix m) => m ()
+mainPag :: (DomBuilder t m, MonadHold t m, PostBuild t m, MonadFix m, Prerender t m) => m ()
 mainPag = do
     pag <- el "div" menuLi
     dyn_ $ currPag <$> pag
