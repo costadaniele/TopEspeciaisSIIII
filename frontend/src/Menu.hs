@@ -40,7 +40,7 @@ menuLi = do
         p3 <- clickLi Pagina3 "Sobre"
         p4 <- clickLi Pagina4 "Contato"
         return (leftmost [p1,p2,p3,p4])
-    holdDyn Pagina0 evs
+    holdDyn Pagina1 evs
     
 currPag :: (DomBuilder t m, MonadHold t m, PostBuild t m, MonadFix m, Prerender t m) => Pagina -> m ()
 currPag p = case p of
